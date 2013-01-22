@@ -21,6 +21,6 @@ You need:
 
  * rtmpdump at the command line to do the heavy lifting.
  * Python
- * Python "requests" library (might be removed in later versions)
+
 
 /Anton
