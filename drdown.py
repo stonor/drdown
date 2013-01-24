@@ -4,9 +4,19 @@ import sys
 import os
 import re
 import logging
-import urllib2
-from urlparse import urlparse
 import json
+
+if sys.version_info < (3, 0):
+    from urllib2 import Request
+    from urllib2 import urlopen
+    from urlparse import urlparse
+
+else:
+    from urllib.request import Request
+    from urllib.request import urlopen
+    from urllib.parse import urlparse
+    raw_input = input
+    
 
 useragent = 'Mozilla/5.0'
 headers = {'User-Agent': useragent}
@@ -22,10 +32,15 @@ download the tv program.
 def fetch(url):
     """Download body from url"""
 
-    req = urllib2.Request(url, headers=headers)
-    response = urllib2.urlopen(req)
+    req = Request(url, headers=headers)
+    response = urlopen(req)
     body = response.read()
     response.close()
+
+    # convert to string - it is easier to convert here
+    if isinstance(body, bytes):
+        body = body.decode('utf8')
+    
     return body
 
 
@@ -221,7 +236,7 @@ def main():
         os.system(cmd)
 
     else:
-        print intro
+        print(intro)
 
 
 if __name__ == "__main__":
