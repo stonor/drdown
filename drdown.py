@@ -150,7 +150,7 @@ class StreamExtractor:
                      'dr-ramasjang': 'livedr05astream',
                      'dr-k': 'livedr04astream',
                      'dr-update-2': 'livedr03astream',
-                     'dr-hd': 'livedr06astream'}
+                     'dr3': 'livedr06astream'}
 
         urlend = self.urlp.path.split('/')[-1]
         playpath = playpaths.get(urlend)
